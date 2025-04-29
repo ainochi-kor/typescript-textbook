@@ -4,6 +4,10 @@
     "moduleResolution": "NodeNext",
     "target": "ESNext",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "useUnknownInCatchVariables": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true
   }
 }
