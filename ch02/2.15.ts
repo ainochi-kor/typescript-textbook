@@ -90,4 +90,29 @@
             'f': boolean;
         }[A1 extends string ? 't' : 'f']
     }
+
+    // 2.15.1 컨디셔널 타입 분배법칙
+    () => {
+        type Start = string | number;
+        type Result = Start extends string ? Start[] : never;
+        // Result = never
+
+        type Result2<Key> = Key extends string ? Key[] : never;
+        let n:Result2<Start> = ['hi']
+        // let n: string[]
+    }
+
+    () => {
+        type Start = string | number | boolean;
+        type Result<Key> = Key extends string | boolean ? Key[] : never;
+        let n: Result<Start> = ['hi'];
+        n = [true]
+    }
+
+    () => {
+        type IsString<T> = T extends string ? true : false;
+        type Result = IsString<'hi' | 3>;
+        // Result = boolean
+    }
+
 }
