@@ -115,4 +115,42 @@
         // Result = boolean
     }
 
+    () => {
+        // 배열로 제네릭을 감싸면 분배법칙이 일어나지 않는다.
+        type IsString<T> = [T] extends [string] ? true : false;
+        type Result = IsString<'hi' | 3>;
+        // Result = boolean
+    }
+
+    () => {
+        // never도 분배법칙의 대상이 된다.
+        type R<T> = T extends string ? true : false;
+        type RR = R<never>;
+        // RR = never
+    }
+
+    () => {
+        type IsNever<T> = [T] extends [never] ? true : false;
+        type T = IsNever<never>
+        // T = true
+        type F = IsNever<'never'>
+        // F = false
+    }
+
+    () => {
+        function test<T>(a: T) {
+            type R<T> = T extends string ? T : T;
+            // Type 'T' is not assignable to type 'R<T>'.
+            // const b: R<T> = a;
+        }
+    }
+
+    () => {
+        function test<T extends ([T] extends [string] ? string : never)>(a:T) {
+            type R<T> = [T] extends [string] ? T : T
+            const b: R<T> = a
+        }
+    }
+
+
 }

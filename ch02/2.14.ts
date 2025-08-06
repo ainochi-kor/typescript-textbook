@@ -7,7 +7,7 @@
 }
 
 interface Zero extends Person<'zero', 28>{}
-interface Nero extends Person<'nero', 32>{}
+// interface Nero extends Person<'nero', 32>{}
 
  interface Array<T> {
     [key: number]: T;
@@ -25,5 +25,20 @@ interface Nero extends Person<'nero', 32>{}
     [key: number]: boolean;
     length: number;
     // 기타 속성들
-    }
+   }
+
+   // interface Zero extends Person<'zero'>{}
+   interface Zero extends Person<'zero', 28>{}
+   // interface Zero extends Person<'zero', 28, boolean>{}
+
+   type Nero = Person<'nero', 32>;
+
+   class Person<N, A> {
+      name: N;
+      age: A;
+      constructor(name: N, age: A) {
+         this.name = name;
+         this.age = age;``
+      }
+   }
 }
