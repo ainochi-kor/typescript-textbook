@@ -257,4 +257,43 @@
 
         new (Person as PersonType)('nero', 28, true);
     }
+
+
+    // 2.20.1 추상 클래스 : implements보다 조금 더 구체적으로 클래스 모양을 정의하는 방법
+    () => {
+        abstract class AbstractPerson {
+            name: string;
+            age: number;
+            married: boolean = false;
+            abstract value: number
+
+            constructor(name: string, age: number, married: boolean) {
+                this.name = name;
+                this.age = age;
+                this.married = married;
+            }
+
+            sayName() {
+                console.log(this.name);
+            }
+            abstract sayAge(): void;
+            abstract sayMarried(): void;
+        }
+
+        class RealPerson extends AbstractPerson {
+            value: number;
+            constructor(name: string, age: number, married: boolean, value: number) {
+                super(name, age, married);
+                this.value = value;
+            }
+
+            sayAge() {
+                console.log(this.age);
+            }
+            sayMarried() {
+                console.log(this.married);
+            }
+        }
+    }
+
 }
